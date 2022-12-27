@@ -6,6 +6,9 @@ public class DamagePlayer : MonoBehaviour
 {
     public int damageAmount = 1;
 
+    public bool destroyOnDamage;
+    public GameObject destroyEffect;
+
     public void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -26,5 +29,15 @@ public class DamagePlayer : MonoBehaviour
     private void DealDamage()
     {
         PlayerHealthController.instance.DamagePlayer(damageAmount);
+
+        if (destroyOnDamage)
+        {
+            if (destroyEffect != null)
+            {
+                Instantiate(destroyEffect, transform.position, transform.rotation);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }
