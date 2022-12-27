@@ -18,7 +18,6 @@ public class PlayerHealthController : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
     }
 
     //[HideInInspector] // make it hidden but public for other components to read it
