@@ -97,4 +97,16 @@ public class PlayerHealthController : MonoBehaviour
 
         UIController.instance.UpdateHealth(currentHealth, maxHealth);
     }
+
+    public void HealPlayer(int healAmount)
+    {
+        currentHealth += healAmount;
+
+        if (currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UIController.instance.UpdateHealth(currentHealth, maxHealth);
+    }
 }
