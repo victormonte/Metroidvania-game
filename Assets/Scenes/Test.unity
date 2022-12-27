@@ -1007,6 +1007,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentHealth: 0
   maxHealth: 10
+  invicibilityLength: 0
 --- !u!1 &567202812
 GameObject:
   m_ObjectHideFlags: 0
@@ -5559,8 +5560,8 @@ GameObject:
   - component: {fileID: 1188306819}
   - component: {fileID: 1188306818}
   - component: {fileID: 1188306817}
-  - component: {fileID: 1188306816}
   - component: {fileID: 1188306820}
+  - component: {fileID: 1188306816}
   - component: {fileID: 1188306821}
   m_Layer: 0
   m_Name: Enemy Flyer
@@ -5648,7 +5649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d402cc89bc151a44afb781d87d51c78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageAmount: 1
+  damageAmount: 3
+  destroyOnDamage: 1
+  destroyEffect: {fileID: 2692215928766330371, guid: 3403e808d0af20a41b66cfbc0920ace9, type: 3}
 --- !u!114 &1188306821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5874,6 +5877,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 1
+  destroyOnDamage: 0
+  destroyEffect: {fileID: 0}
 --- !u!1 &1378041771
 GameObject:
   m_ObjectHideFlags: 0
@@ -5925,7 +5930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7830189, g: 0, b: 0.022313861, a: 1}
+  m_Color: {r: 0.39607844, g: 0, b: 0.022313861, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
