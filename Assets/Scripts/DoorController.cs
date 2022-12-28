@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class DoorController : MonoBehaviour
     public float distanceToOpen;
 
     private PlayerController thePlayer;
+
+    private bool playerExiting;
+
+    public Transform exitPoint;
+    public float movePlayerSpeed;
+
+    public string levelToLoad;
 
     // Start is called before the first frame update
     void Start()
@@ -27,5 +35,40 @@ public class DoorController : MonoBehaviour
         {
             anim.SetBool("doorOpen", false);
         }
+
+        if (playerExiting)
+        {
+            thePlayer.transform.position = Vector3.MoveTowards(thePlayer.transform.position, exitPoint.position, movePlayerSpeed * Time.deltaTime);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            if (!playerExiting)
+            {
+                thePlayer.canMove = false;
+
+                StartCoroutine(UseDoorCo());
+            }
+        }
+    }
+
+    // Coroutine
+    IEnumerator UseDoorCo()
+    {
+        playerExiting = true;
+
+        // transition with freezing like Megaman
+        thePlayer.animator.enabled = false;
+
+        yield return new WaitForSeconds(1.5f);
+
+        RespawnController.instance.SetSpawn(exitPoint.position);
+        thePlayer.canMove = true;
+        thePlayer.animator.enabled = true;
+
+        SceneManager.LoadScene(levelToLoad);
     }
 }
