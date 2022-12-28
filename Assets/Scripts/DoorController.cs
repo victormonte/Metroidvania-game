@@ -63,11 +63,15 @@ public class DoorController : MonoBehaviour
         // transition with freezing like Megaman
         thePlayer.animator.enabled = false;
 
+        UIController.instance.StartFadeToBlack();
+
         yield return new WaitForSeconds(1.5f);
 
         RespawnController.instance.SetSpawn(exitPoint.position);
         thePlayer.canMove = true;
         thePlayer.animator.enabled = true;
+
+        UIController.instance.StartFadeFromBlack();
 
         SceneManager.LoadScene(levelToLoad);
     }
