@@ -21,4 +21,9 @@ public class BossBattle : MonoBehaviour
     {
         theCam.transform.position = Vector3.MoveTowards(theCam.transform.position, camPosition.position, camSpeed * Time.deltaTime);
     }
+
+    public void EndBattle()
+    {
+        gameObject.SetActive(false);
+    }
 }

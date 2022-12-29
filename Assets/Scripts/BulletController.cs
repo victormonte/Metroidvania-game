@@ -19,12 +19,17 @@ public class BulletController : MonoBehaviour
         theRb.velocity = moveDir * bulletSpeed;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.tag == "Enemy")
+        if (other.tag == "Enemy")
         {
             // damage the enemy
-            collision.GetComponent<EnemyHealthController>().DamageEnemy(damageAmount);
+            other.GetComponent<EnemyHealthController>().DamageEnemy(damageAmount);
+        }
+
+        if (other.tag == "Boss")
+        {
+            BossHealthController.instance.TakeDamage(damageAmount);
         }
 
         if (impactEffect != null)
