@@ -26,6 +26,10 @@ public class BossBattle : MonoBehaviour
     public GameObject bullet;
     public Transform shotPoint;
 
+    public GameObject winObjects;
+
+    private bool battleEnded;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,14 +48,50 @@ public class BossBattle : MonoBehaviour
         // Fix camera in Boss Battle
         theCam.transform.position = Vector3.MoveTowards(theCam.transform.position, camPosition.position, camSpeed * Time.deltaTime);
 
-        if (BossHealthController.instance.currentHealth > threshold1)
+        if(!battleEnded)
         {
-            FirstPhase();
-
+            if (BossHealthController.instance.currentHealth > threshold1)
+            {
+                FirstPhase();
+            }
+            else
+            {
+                SecondPhase();
+            }
         }
         else
         {
-            SecondPhase();
+            fadeCounter -= Time.deltaTime;
+            if (fadeCounter < 0)
+            {
+                if(winObjects != null)
+                {
+                    winObjects.SetActive(true);
+                    winObjects.transform.SetParent(null);
+                }
+
+                theCam.enabled = true;
+
+                gameObject.SetActive(false);
+            }
+        }
+    }
+
+    public void EndBattle()
+    {
+        battleEnded = true;
+
+        fadeCounter = fadeoutTime;
+        anim.SetTrigger("vanish");
+        theBoss.GetComponent<Collider2D>().enabled = false;
+
+        BossBullet[] bullets = FindObjectsOfType<BossBullet>();
+        if (bullets.Length > 0)
+        {
+            foreach (BossBullet bullet in bullets)
+            {
+                Destroy(bullet.gameObject);
+            }
         }
     }
 
@@ -172,10 +212,5 @@ public class BossBattle : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void EndBattle()
-    {
-        gameObject.SetActive(false);
     }
 }
