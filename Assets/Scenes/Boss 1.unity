@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3464481604149559437, guid: cab3d8f8e1ecaaa488b78f516b1d60a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 68.99
+      value: 96.55
       objectReference: {fileID: 0}
     - target: {fileID: 3464481604149559437, guid: cab3d8f8e1ecaaa488b78f516b1d60a0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -331,6 +331,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camPosition: {fileID: 305576456}
   camSpeed: 5
+  threshold1: 25
+  threshold2: 5
+  activeTime: 5
+  fadeoutTime: 0.5
+  inactiveTime: 1
+  spawnPoints:
+  - {fileID: 1687488773}
+  - {fileID: 1667454398}
+  - {fileID: 1361551480}
+  - {fileID: 1631439089}
+  - {fileID: 2013139429}
+  moveSpeed: 5
+  anim: {fileID: 2063368935}
+  theBoss: {fileID: 2063368932}
 --- !u!114 &76479155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11653,7 +11667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005594624953304726, guid: bbd0d709a1828dd46a6f9cfca4153a4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.16
+      value: 15.53
       objectReference: {fileID: 0}
     - target: {fileID: 9005594624953304726, guid: bbd0d709a1828dd46a6f9cfca4153a4b, type: 3}
       propertyPath: m_LocalPosition.y
