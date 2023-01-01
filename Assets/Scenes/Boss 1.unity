@@ -336,7 +336,7 @@ MonoBehaviour:
   camPosition: {fileID: 305576456}
   camSpeed: 5
   threshold1: 25
-  threshold2: 5
+  threshold2: 10
   activeTime: 5
   fadeoutTime: 0.5
   inactiveTime: 1
@@ -349,6 +349,10 @@ MonoBehaviour:
   moveSpeed: 5
   anim: {fileID: 2063368935}
   theBoss: {fileID: 2063368932}
+  timeBetweenShots1: 1
+  timeBetweenShots2: 0.5
+  bullet: {fileID: 6934490617187418006, guid: 8ef89e9e414b71c44b821b2b625b0ca9, type: 3}
+  shotPoint: {fileID: 1586955507}
 --- !u!114 &76479155
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,6 +1242,37 @@ Transform:
   - {fileID: 1588328034}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1586955506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1586955507}
+  m_Layer: 13
+  m_Name: Shot Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1586955507
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1586955506}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.28, y: -0.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2063368932}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1588328033
 GameObject:
@@ -11401,7 +11436,7 @@ GameObject:
   - component: {fileID: 2063368933}
   - component: {fileID: 2063368934}
   - component: {fileID: 2063368935}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: The Boss
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -11419,7 +11454,8 @@ Transform:
   m_LocalPosition: {x: 34.64, y: 3.09, z: 0.40099165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1586955507}
   m_Father: {fileID: 76479153}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11671,7 +11707,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9005594624953304726, guid: bbd0d709a1828dd46a6f9cfca4153a4b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.67
+      value: 1.34
       objectReference: {fileID: 0}
     - target: {fileID: 9005594624953304726, guid: bbd0d709a1828dd46a6f9cfca4153a4b, type: 3}
       propertyPath: m_LocalPosition.y

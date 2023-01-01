@@ -21,6 +21,11 @@ public class BossBattle : MonoBehaviour
 
     public Transform theBoss;
 
+    public float timeBetweenShots1, timeBetweenShots2;
+    private float shotCounter;
+    public GameObject bullet;
+    public Transform shotPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +34,8 @@ public class BossBattle : MonoBehaviour
         theCam.enabled = false;
 
         activeCounter = activeTime;
+
+        shotCounter = timeBetweenShots1;
     }
 
     // Update is called once per frame
@@ -45,6 +52,49 @@ public class BossBattle : MonoBehaviour
         else
         {
             SecondPhase();
+        }
+    }
+
+    private void FirstPhase()
+    {
+        if (activeCounter > 0)
+        {
+            activeCounter -= Time.deltaTime;
+            if (activeCounter <= 0)
+            {
+                fadeCounter = fadeoutTime;
+                anim.SetTrigger("vanish");
+            }
+
+            shotCounter -= Time.deltaTime;
+            if (shotCounter <= 0)
+            {
+                shotCounter = timeBetweenShots1;
+
+                Instantiate(bullet, shotPoint.position, Quaternion.identity);
+            }
+        }
+        else if (fadeCounter > 0)
+        {
+            fadeCounter -= Time.deltaTime;
+            if (fadeCounter <= 0)
+            {
+                theBoss.gameObject.SetActive(false);
+                inactiveCounter = inactiveTime;
+            }
+        }
+        else if (inactiveCounter > 0)
+        {
+            inactiveCounter -= Time.deltaTime;
+            if (inactiveCounter <= 0)
+            {
+                theBoss.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
+                theBoss.gameObject.SetActive(true);
+
+                activeCounter = activeTime;
+
+                shotCounter = timeBetweenShots1;
+            }
         }
     }
 
@@ -66,6 +116,21 @@ public class BossBattle : MonoBehaviour
                 {
                     fadeCounter = fadeoutTime;
                     anim.SetTrigger("vanish");
+                }
+
+                shotCounter -= Time.deltaTime;
+                if (shotCounter <= 0)
+                {
+                    if(PlayerHealthController.instance.currentHealth > threshold2)
+                    {
+                        shotCounter = timeBetweenShots1;
+                    }
+                    else
+                    {
+                        shotCounter = timeBetweenShots2;
+                    }
+
+                    Instantiate(bullet, shotPoint.position, Quaternion.identity);
                 }
             }
             else if (fadeCounter > 0)
@@ -95,40 +160,16 @@ public class BossBattle : MonoBehaviour
                     } while (theBoss.position == targetPoint.position);
 
                     theBoss.gameObject.SetActive(true);
+
+                    if (PlayerHealthController.instance.currentHealth > threshold2)
+                    {
+                        shotCounter = timeBetweenShots1;
+                    }
+                    else
+                    {
+                        shotCounter = timeBetweenShots2;
+                    }
                 }
-            }
-        }
-    }
-
-    private void FirstPhase()
-    {
-        if (activeCounter > 0)
-        {
-            activeCounter -= Time.deltaTime;
-            if (activeCounter <= 0)
-            {
-                fadeCounter = fadeoutTime;
-                anim.SetTrigger("vanish");
-            }
-        }
-        else if (fadeCounter > 0)
-        {
-            fadeCounter -= Time.deltaTime;
-            if (fadeCounter <= 0)
-            {
-                theBoss.gameObject.SetActive(false);
-                inactiveCounter = inactiveTime;
-            }
-        }
-        else if (inactiveCounter > 0)
-        {
-            inactiveCounter -= Time.deltaTime;
-            if (inactiveCounter <= 0)
-            {
-                theBoss.position = spawnPoints[Random.Range(0, spawnPoints.Length)].position;
-                theBoss.gameObject.SetActive(true);
-
-                activeCounter = activeTime;
             }
         }
     }

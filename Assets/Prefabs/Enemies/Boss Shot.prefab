@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6934490617187418011}
   - component: {fileID: 6934490617187418010}
   - component: {fileID: 6934490617187418008}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Boss Shot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
