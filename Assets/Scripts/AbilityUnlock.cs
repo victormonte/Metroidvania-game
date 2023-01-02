@@ -21,21 +21,29 @@ public class AbilityUnlock : MonoBehaviour
             if (unlockDoubleJump)
             {
                 player.canDoubleJump = true;
+
+                PlayerPrefs.SetInt("DoubleJumpUnlocked", 1);
             }
 
             if (unlockDash)
             {
                 player.canDash = true;
+
+                PlayerPrefs.SetInt("DashUnlocked", 1);
             }
 
             if (unlockBecomeBall)
             {
                 player.canBecomeBall = true;
+
+                PlayerPrefs.SetInt("BallUnlocked", 1);
             }
 
             if (unlockDropBomb)
             {
                 player.canDropBomb = true;
+
+                PlayerPrefs.SetInt("BombUnlocked", 1);
             }
 
             Instantiate(pickEffect, transform.position, transform.rotation);

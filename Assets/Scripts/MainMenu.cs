@@ -33,6 +33,38 @@ public class MainMenu : MonoBehaviour
         player.gameObject.SetActive(true);
         player.transform.position = new Vector3(PlayerPrefs.GetFloat("PosX"), PlayerPrefs.GetFloat("PosY"), PlayerPrefs.GetFloat("PosZ"));
 
+        if (PlayerPrefs.HasKey("DoubleJumpUnlocked"))
+        {
+            if (PlayerPrefs.GetInt("DoubleJumpUnlocked") == 1)
+            {
+                player.canDoubleJump = true;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("DashUnlocked"))
+        {
+            if (PlayerPrefs.GetInt("DashUnlocked") == 1)
+            {
+                player.canDash = true;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("BallUnlocked"))
+        {
+            if (PlayerPrefs.GetInt("BallUnlocked") == 1)
+            {
+                player.canBecomeBall = true;
+            }
+        }
+
+        if (PlayerPrefs.HasKey("BombUnlocked"))
+        {
+            if (PlayerPrefs.GetInt("BombUnlocked") == 1)
+            {
+                player.canDropBomb = true;
+            }
+        }
+
         SceneManager.LoadScene(PlayerPrefs.GetString("ContinueLevel"));
     }
 
