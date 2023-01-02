@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -59,7 +60,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (canMove && IsGamePaused())
         {
             if (dashRechargeCounter > 0)
             {
@@ -196,6 +197,8 @@ public class PlayerController : MonoBehaviour
             ballAnimator.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
         }
     }
+
+    private bool IsGamePaused() => Time.timeScale != 0;
 
     public void ShowAfterImage()
     {
