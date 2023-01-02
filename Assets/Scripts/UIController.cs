@@ -32,6 +32,10 @@ public class UIController : MonoBehaviour
 
     public Slider healthSlider;
 
+    private void Start()
+    {
+        UpdateHealth(PlayerHealthController.instance.currentHealth, PlayerHealthController.instance.maxHealth);
+    }
 
     // Update is called once per frame
     void Update()
