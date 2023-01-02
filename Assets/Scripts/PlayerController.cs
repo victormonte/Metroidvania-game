@@ -73,7 +73,8 @@ public class PlayerController : MonoBehaviour
                     dashCounter = dashTime;
 
                     ShowAfterImage();
-                    ;
+
+                    AudioManager.instance.PlaySFXAdjusted(7);
                 }
             }
 
@@ -120,12 +121,16 @@ public class PlayerController : MonoBehaviour
                 if (isOnGround)
                 {
                     canDounleJump = true;
+
+                    AudioManager.instance.PlaySFXAdjusted(12);
                 }
                 else
                 {
                     canDounleJump = false;
 
                     animator.SetTrigger("doubleJump");
+
+                    AudioManager.instance.PlaySFXAdjusted(9);
                 }
 
                 theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
@@ -139,10 +144,14 @@ public class PlayerController : MonoBehaviour
                     Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0);
 
                     animator.SetTrigger("shotFired");
+
+                    AudioManager.instance.PlaySFXAdjusted(14);
                 }
                 else if (ball.activeSelf && abilities.canDropBomb)
                 {
                     Instantiate(bomb, bombPoint.position, bombPoint.rotation);
+
+                    AudioManager.instance.PlaySFXAdjusted(13);
                 }
             }
 
@@ -156,6 +165,8 @@ public class PlayerController : MonoBehaviour
                     {
                         ball.SetActive(true);
                         standing.SetActive(false);
+
+                        AudioManager.instance.PlaySFX(6);
                     }
                 }
                 else
@@ -172,6 +183,8 @@ public class PlayerController : MonoBehaviour
                     {
                         ball.SetActive(false);
                         standing.SetActive(true);
+
+                        AudioManager.instance.PlaySFX(10);
                     }
                 }
                 else

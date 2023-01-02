@@ -45,6 +45,9 @@ public class BombController : MonoBehaviour
                     enemyHealth.DamageEnemy(damageAmount);
                 }
             }
+
+            AudioManager.instance.PlaySFXAdjusted(4);
+
         }
     }
 }

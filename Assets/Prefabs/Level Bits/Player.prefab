@@ -416,10 +416,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2bca29d179042c43b69c20161fb3f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canDoubleJump: 1
-  canDash: 1
-  canBecomeBall: 1
-  canDropBomb: 1
+  canDoubleJump: 0
+  canDash: 0
+  canBecomeBall: 0
+  canDropBomb: 0
 --- !u!114 &3464481604149559472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,7 +433,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 1
+  maxHealth: 10
   invicibilityLength: 1.5
   flashLength: 0.1
   playerSprites:
